@@ -1,0 +1,28 @@
+.input {
+  width: 100%;
+  max-width: 300px;
+  height: 30x;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1.5px solid lightgrey;
+  outline: none;
+  transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.input:active {
+  transform: scale(0.95);
+}
+
+.input:focus {
+  border: 2px solid #4383b7;
+}
+
+/* mobile: esconde desktop, mostra hambúrguer */
+.desktop-menu { display: none; }
+.hamburger-btn { display: block; }
+
+/* desktop: mostra itens, esconde hambúrguer */
+@media (min-width: 740px) {
+  .desktop-menu { display: flex !important; }
+  .hamburger-btn { display: none !important; }
+}

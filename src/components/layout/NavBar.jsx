@@ -24,8 +24,8 @@ export function NavBar () {
   }, []); // [] = vazio roda só uma vez, [valor] = roda toda vez que o valor muda
 
   return (
-    <div style={{ borderBottom: '1px solid #5bb1f6' }}>
-      <nav style={{ width: '100%', background: '#004d8e' }}>
+    <div style={{ borderBottom: '1px solid white' }}>
+      <nav style={{ width: '100%', background: 'linear-gradient(to bottom, #004d8e, #3695e3)' }}>
 
         {/* barra principal */}
         <div style={{ height: '124px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 24px' }}>

@@ -1,13 +1,15 @@
-import { NavBar } from '../components/layout/NavBar';
+import './Home.css';
 
+import { NavBar } from '../components/layout/NavBar';
 
 export function Home() {
     return (
-        <main>
+        <main className='home-main'>
 
-            <header>
+            <header className='home-header'>
 
                 <NavBar />
+
 
             </header>
 

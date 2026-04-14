@@ -1,7 +1,7 @@
-<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet"></link>
+import logoImg from '../../assets/logo.png';
 
 export function Xablau () {
     return (
-        <span style={{ fontFamily: '"Roboto Mono", monospace' }}>Xablau!</span>
+        <img src={ logoImg } alt="Logo Xablau" style={{ height: '124px', width: '220px', padding: '0' }}/>
     )
 }

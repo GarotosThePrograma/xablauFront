@@ -1,6 +1,7 @@
 import './NavBar.css';
 
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 import { Xablau } from '../ui/Xablau.jsx'
 import { UserCircle } from 'lucide-react';
@@ -38,11 +39,10 @@ export function NavBar () {
 
           {/* itens do desktop, some abaixo de 600px */}
           <div className='desktop-items' style={{ display: 'flex', alignItems: 'center', gap: '20px'}}>
-            <a href="#" style={{ display: 'flex', alignItems: 'center', gap: '10px', color: 'white' }}>
+            <Link to="/login" style={{ display: 'flex', alignItems: 'center', gap: '10px', color: 'white' }}>
               <UserCircle size={42} strokeWidth={1.5} />
               <div>Entre<br/>ou Cadastre-se</div>
-            </a>
-
+            </Link>
             <a href="#" style={{ display: 'flex', gap: '15px' }}>
               <MdFavorite size={30} style={{ color: 'white' }} />
               <MdShoppingCart size={35} style={{ color: 'white' }} />
@@ -59,10 +59,10 @@ export function NavBar () {
 
         {/* template string do js, ${} = expressao js avaliada na hora, ternaria para abertura do menu */}
         <div className={`mobile-menu ${menuOpen ? 'mobile-menu--open' : ''}`}>
-          <a href="#" style={{ display: 'flex', alignItems: 'center', gap: '10px', color: 'white' }}>
+          <Link to="/login" onClick={() => setMenuOpen(false)} style={{ display: 'flex', alignItems: 'center', gap: '10px', color: 'white' }}>
             <UserCircle size={36} strokeWidth={1.5} />
             <div>Entre ou Cadastre-se</div>
-          </a>
+          </Link>
           <a href="#" style={{ display: 'flex', gap: '25px' }}>
             <MdFavorite size={30} style={{ color: 'white' }} />
             <MdShoppingCart size={35} style={{ color: 'white' }} />

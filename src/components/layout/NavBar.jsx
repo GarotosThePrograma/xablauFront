@@ -61,7 +61,7 @@ export function NavBar () {
         <div className={`mobile-menu ${menuOpen ? 'mobile-menu--open' : ''}`}>
           <Link to="/login" onClick={() => setMenuOpen(false)} style={{ display: 'flex', alignItems: 'center', gap: '10px', color: 'white' }}>
             <UserCircle size={36} strokeWidth={1.5} />
-            <div>Entre ou Cadastre-se</div>
+            <div><Link to="/login" onClick={() => setMenuOpen(false)} >Entre</Link> ou <br/><span className='undeline'>Cadastre-se</span></div>
           </Link>
           <a href="#" style={{ display: 'flex', gap: '25px' }}>
             <MdFavorite size={30} style={{ color: 'white' }} />

@@ -36,8 +36,8 @@ export function Login() {
 
           <button type="submit" className="btn-primary">Entrar</button>
 
-          <p className="signup-link">
-            Não tem uma conta? <a style={{ color: '#3695e3',  }} href="#">Cadastre-se</a>
+          <p>
+            Não tem uma conta? <a style={{ color: '#3695e3' }} href="#" >Cadastre-se</a>
           </p>
         </form>
 

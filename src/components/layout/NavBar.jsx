@@ -42,6 +42,7 @@ export function NavBar () {
               <UserCircle size={42} strokeWidth={1.5} />
               <div>Entre<br/>ou Cadastre-se</div>
             </a>
+
             <a href="#" style={{ display: 'flex', gap: '15px' }}>
               <MdFavorite size={30} style={{ color: 'white' }} />
               <MdShoppingCart size={35} style={{ color: 'white' }} />

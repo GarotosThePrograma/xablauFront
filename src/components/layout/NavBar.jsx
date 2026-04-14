@@ -32,8 +32,8 @@ export function NavBar () {
           
           <h1 className='logo' style={{ color: 'white', margin: 0 }}><Xablau/></h1>
 
-          <div className='seachField' style={{ flexGrow: '1', margin: '15px' }}>
-              <input placeholder="Busque na Xablau!" type="text" className="input" style={{ width: '100%', maxWidth: '700px', minWidth: '150px' }}/>
+          <div className='seachField' style={{ flexGrow: '1', margin: '15px', maxWidth: '700px', display: 'flex', justifyContent: 'center'}}>
+              <input placeholder="Busque na Xablau!" type="text" className="input" style={{ width: '100%',  minWidth: '150px', margin: '0 auto' }}/>
             </div>
 
           {/* itens do desktop, some abaixo de 600px */}

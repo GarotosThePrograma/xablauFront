@@ -1,4 +1,4 @@
-/* ---- itens menu mobile e desktop ---- */
+/* ---- responsividade ---- */
 /* esconde desktop, mostra hamburguer */
 .desktop-menu { display: none; }
 .hamburger-btn { display: block; }
@@ -8,22 +8,51 @@
     display: none !important;
 }
 
-/* mostra itens, esconde hambúrguer */
+/* mostra itens, esconde hamburguer */
 @media (min-width: 600px) {
-  .desktop-menu { display: flex !important; }
   .hamburger-btn { display: none !important; }
+}
+
+/* animacao do menu mobile */
+.mobile-menu {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 0 24px;
+  border-top: 1px solid transparent;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(-8px);
+  transition:
+    max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.25s ease,
+    transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    padding 0.3s ease,
+    border-color 0.3s ease;
+}
+
+/* estado aberto do mobile-menu BEM */
+.mobile-menu--open {
+  max-height: 200px;
+  opacity: 1;
+  transform: translateY(0);
+  padding: 16px 24px;
+  border-color: #5bb1f6;
 }
 
 /* ---- search ---- */
 .input {
   width: 100%;
   max-width: 300px;
-  height: 30x;
+  height: 30px;
   padding: 12px;
   border-radius: 12px;
   border: 1.5px solid lightgrey;
   outline: none;
   transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+  background: aliceblue;
 }
 
 .input:active {

@@ -1,5 +1,6 @@
 import './Home.css';
 
+import { Xablau } from '../components/ui/Xablau'
 import { NavBar } from '../components/layout/NavBar';
 
 export function Home() {
@@ -12,6 +13,7 @@ export function Home() {
 
 
             </header>
+        
 
         </main>
     )

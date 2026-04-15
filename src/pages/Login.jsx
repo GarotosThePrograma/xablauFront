@@ -24,7 +24,7 @@ export function Login() {
           <div className="input-group">
             <div className="password-header">
               <label htmlFor="password">Senha:</label>
-              <a style={{ color: '#3695e3',  }} href="#">Esqueceu a senha?</a>
+              <a className='forgot-password' href="#">Esqueceu a senha?</a>
             </div>
             <input 
               id="password" 
@@ -37,7 +37,7 @@ export function Login() {
           <button type="submit" className="btn-primary">Entrar</button>
 
           <p>
-            Não tem uma conta? <a style={{ color: '#3695e3' }} href="#" >Cadastre-se</a>
+            Não tem uma conta? <a className='not-registered-yet' href="#" >Cadastre-se</a>
           </p>
         </form>
 

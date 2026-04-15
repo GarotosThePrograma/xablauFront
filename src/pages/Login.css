@@ -107,3 +107,19 @@
 .btn-outline:hover {
   background-color: #f1f5f9;
 }
+
+.forgot-password {
+  color: #3695e3;
+}
+
+.forgot-password:hover {
+  text-decoration: underline;
+}
+
+.not-registered-yet {
+  color: #3695e3;
+}
+
+.not-registered-yet:hover {
+  text-decoration: underline;
+}

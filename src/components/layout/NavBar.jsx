@@ -60,7 +60,7 @@ export function NavBar () {
         <div className={`mobile-menu ${menuOpen ? 'mobile-menu--open' : ''}`}>
           <Link to="/login" className='mobile-login' onClick={() => setMenuOpen(false)}>
             <UserCircle size={36} strokeWidth={1.5} />
-            <div><Link to="/login" onClick={() => setMenuOpen(false)} >Entre</Link> ou <br/>Cadastre-se</div>
+            <div>Entre ou Cadastre-se</div>
           </Link>
           <a href="#" className='mobile-fav-cart'>
             <MdFavorite size={30} className='favorite-icon' />

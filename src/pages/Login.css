@@ -123,3 +123,13 @@
 .not-registered-yet:hover {
   text-decoration: underline;
 }
+
+small {
+  display: none;
+}
+
+.incorrect {
+  color: red;
+  display: block !important;
+}
+

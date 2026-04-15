@@ -26,32 +26,31 @@ export function NavBar () {
 
   return (
     <div>
-      <nav style={{ width: '100%', background: 'linear-gradient(to bottom, #004d8e, #3695e3)' }}>
+      <nav className='nav-container'>
 
         {/* barra principal */}
-        <div style={{ height: '124px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 24px' }}>
+        <div  className='nav-flex-container'>
           
-          <h1 className='logo' style={{ color: 'white', margin: 0 }}><Xablau/></h1>
+          <h1 className='logo'><Xablau/></h1>
 
-          <div className='seachField' style={{ flexGrow: '1', margin: '15px', maxWidth: '700px', display: 'flex', justifyContent: 'center'}}>
-              <input placeholder="Busque na Xablau!" type="text" className="input" style={{ width: '100%',  minWidth: '150px', margin: '0 auto' }}/>
+          <div className='search-container'>
+              <input placeholder="Busque na Xablau!" type="text" className="search-input" />
             </div>
 
           {/* itens do desktop, some abaixo de 600px */}
-          <div className='desktop-items' style={{ display: 'flex', alignItems: 'center', gap: '20px'}}>
-            <Link to="/login" style={{ display: 'flex', alignItems: 'center', gap: '10px', color: 'white' }}>
+          <div className='desktop-items'>
+            <Link to="/login" className='desktop-login'>
               <UserCircle size={42} strokeWidth={1.5} />
               <div>Entre<br/>ou Cadastre-se</div>
             </Link>
-            <a href="#" style={{ display: 'flex', gap: '15px' }}>
-              <MdFavorite size={30} style={{ color: 'white' }} />
-              <MdShoppingCart size={35} style={{ color: 'white' }} />
+            <a href="#" className='desktop-fav-cart'>
+              <MdFavorite size={30} className='favorite-icon' />
+              <MdShoppingCart size={35} className='cart-icon' />
             </a>
           </div>
 
           {/* botao hamburguer, aparece abaixo de 600px */}
-          <button className='hamburger-btn' onClick={() => setMenuOpen(!menuOpen)}
-            style={{ background: 'transparent', border: 'none', cursor: 'pointer', color: 'white' }}>
+          <button className='hamburger-btn' onClick={() => setMenuOpen(!menuOpen)}>
             {menuOpen ? <MdClose size={32} /> : <MdMenu size={32} />} {/* op ternaria, se é true, mdclose, se é false, mdmenu */}
           </button>
 
@@ -59,13 +58,13 @@ export function NavBar () {
 
         {/* template string do js, ${} = expressao js avaliada na hora, ternaria para abertura do menu */}
         <div className={`mobile-menu ${menuOpen ? 'mobile-menu--open' : ''}`}>
-          <Link to="/login" onClick={() => setMenuOpen(false)} style={{ display: 'flex', alignItems: 'center', gap: '10px', color: 'white' }}>
+          <Link to="/login" className='mobile-login' onClick={() => setMenuOpen(false)}>
             <UserCircle size={36} strokeWidth={1.5} />
-            <div><Link to="/login" onClick={() => setMenuOpen(false)} >Entre</Link> ou <br/><span className='undeline'>Cadastre-se</span></div>
+            <div><Link to="/login" onClick={() => setMenuOpen(false)} >Entre</Link> ou <br/>Cadastre-se</div>
           </Link>
-          <a href="#" style={{ display: 'flex', gap: '25px' }}>
-            <MdFavorite size={30} style={{ color: 'white' }} />
-            <MdShoppingCart size={35} style={{ color: 'white' }} />
+          <a href="#" className='mobile-fav-cart'>
+            <MdFavorite size={30} className='favorite-icon' />
+            <MdShoppingCart size={35} className='cart-icon' />
           </a>
         </div>
 

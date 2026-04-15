@@ -1,7 +1,13 @@
 /* ---- responsividade ---- */
 /* esconde desktop, mostra hamburguer */
 .desktop-menu { display: none; }
-.hamburger-btn { display: block; }
+.hamburger-btn { 
+  display: block;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: white;
+}
 
 /* tira itens do nav e aparece o hamburguer */
 .is-mobile .desktop-items {
@@ -42,8 +48,20 @@
   border-color: #5bb1f6;
 }
 
+.mobile-login {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: white;
+}
+
+.mobile-fav-cart {
+   display: flex;
+  gap: 25px;
+}
+
 /* ---- search ---- */
-.input {
+.search-input {
   width: 100%;
   height: 30px;
   padding: 12px;
@@ -52,12 +70,66 @@
   outline: none;
   transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
   background: aliceblue;
+  min-width: 150px;
+  margin: 0 auto;
 }
 
-.input:active {
+.search-input:active {
   transform: scale(0.95);
 }
 
-.input:focus {
+.search-input:focus {
   border: 2px solid #4383b7;
+}
+
+.nav-container {
+  width: 100%;
+   background: linear-gradient(to bottom, #004d8e, #3695e3);
+}
+
+.nav-flex-container {
+  height: 124px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px
+}
+
+/* h1 */
+.logo {
+  color: white;
+  margin: 0;
+}
+
+.search-container {
+  flex-grow: 1;
+  margin: 15px;
+  max-width: 700px;
+  display: flex;
+  justify-content: center;
+}
+
+.desktop-items {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.desktop-login {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: white;
+}
+
+.desktop-fav-cart {
+  display: flex;
+  gap: 15px;
+}
+
+.favorite-icon {
+  color: white;
+}
+.cart-icon {
+  color: white;
 }

@@ -1,7 +1,9 @@
+import './Login.css';
+
+import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import './Login.css';
 
 
   // definindo regras do zod fora do componente para mais performance
@@ -71,13 +73,12 @@ export function Login() {
               { ...register("password") }
             />
             {errors.password && <span className='incorrect'>{errors.password.message}</span>}
-            <small>Senha inválida</small>
           </div>
 
           <button type="submit" className="btn-primary">Entrar</button>
 
           <p>
-            Não tem uma conta? <a className='not-registered-yet' href="#" >Cadastre-se</a>
+            Não tem uma conta? <Link to="/cadastro" className='not-registered-yet'>Cadastre-se</Link>
           </p>
         </form>
 

@@ -3,7 +3,7 @@ import './NavBar.css';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-import { Xablau } from '../ui/Xablau.jsx'
+import { Xablau } from '../components/common/Xablau.jsx'
 import { UserCircle } from 'lucide-react';
 import { MdShoppingCart, MdFavorite, MdMenu, MdClose } from 'react-icons/md';
 

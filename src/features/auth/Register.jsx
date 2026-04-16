@@ -3,20 +3,10 @@ import './RegisterLogin.css';
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { z } from 'zod';
 
+import { registerSchema } from './schemas/authSchema';
 
-  // definindo regras do zod fora do componente para mais performance
-  const loginSchema = z.object({
-    email: z.email("Formato de e-mail inválido")
-      .min(1, "O e-mail é obrigatório"),
-
-    password: z.string()
-      .min(6, "A senha precisa ter 6-20 caracteres")
-      .max(20, "A senha precisa ter 6-20 caracteres")
-  });
-
-export function Login() {
+export function Register() {
 
   const {
     register,
@@ -25,7 +15,7 @@ export function Login() {
     handleSubmit,
     formState: { errors }
   } = useForm({
-    resolver: zodResolver(loginSchema), // o RHF agora sabe que deve usar o Zod
+    resolver: zodResolver(registerSchema), // o RHF agora sabe que deve usar o Zod
   });
 
   const enviarDados = (dadosValidados) => {
@@ -37,14 +27,27 @@ export function Login() {
       <div className="login-card">
         
         <div className="login-header">
-          <h2>Acesse sua conta</h2>
-          <p>Digite seu e-mail e senha abaixo para entrar</p>
+          <h2>Crie uma conta</h2>
+          <p>Digite seu nome, e-mail e senha abaixo para efetuar o cadastro</p>
         </div>
 
         <form onSubmit={handleSubmit(enviarDados)} className="login-form">
           <div className="input-group">
+
+            <label htmlFor="name">Nome:</label>
+            <input 
+              id='name'
+              type='text'
+              placeholder='Seu nome'
+              autoComplete='Off'
+              required
+
+              /* injeta o nome no RHF */
+              { ...register("name") }
+            />
+            {errors.name && <span className='incorrect' >{errors.name.message}</span>}
+
             <label htmlFor="email">E-mail:</label>
-            
             <input 
               id="email" 
               type="email" 
@@ -73,12 +76,13 @@ export function Login() {
               { ...register("password") }
             />
             {errors.password && <span className='incorrect'>{errors.password.message}</span>}
+
           </div>
 
           <button type="submit" className="btn-primary">Entrar</button>
 
           <p>
-            Não tem uma conta? <Link to="/cadastro" className='not-registered-yet'>Cadastre-se</Link>
+            Já tem uma conta? <Link to="/login" className='not-registered-yet'>Entre</Link>
           </p>
         </form>
 

@@ -60,8 +60,6 @@ export function Login() {
             <div className="password-header">
               <label htmlFor="password">Senha:</label>
               
-
-              <a className='forgot-password' href="#">Esqueceu a senha?</a>
             </div>
             <input 
               id="password" 

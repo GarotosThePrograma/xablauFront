@@ -25,3 +25,11 @@
 * {
     font-family: monospace;
 }
+
+:root {
+  --primary-color: 207 100% 28%; /* azul escuro */
+  --secondary-color: 207 75% 55%; /* azul mais claro */
+  --background: 208 100% 97%; /* aliceblue para bg */ 
+
+  --foreground: 207 100% 10%; /* azul quase preto para texto */
+}

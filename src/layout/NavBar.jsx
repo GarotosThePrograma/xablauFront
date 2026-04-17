@@ -1,74 +1,130 @@
-import './NavBar.css';
-
+// NavBar.jsx — sem NavBar.css
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-
-import { Xablau } from '../components/common/Xablau.jsx'
+import { Xablau } from '../components/common/Xablau.jsx';
 import { UserCircle } from 'lucide-react';
 import { MdShoppingCart, MdFavorite, MdMenu, MdClose } from 'react-icons/md';
+import { Box, Flex, Input, IconButton } from '@chakra-ui/react';
 
-export function NavBar () {
+export function NavBar() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
-  // garante que a aba do hamburguer fecha quando a janela fica maior que 600px e remove itens do nav quando o hamburguer aparece
   useEffect(() => {
-    const resizeTab = () => {
-        if (window.innerWidth >= 600) { setMenuOpen(false);
-        document.querySelector('nav').classList.remove('is-mobile');
-        } else {
-            document.querySelector('nav').classList.add('is-mobile')
-        }
-    }   
-    resizeTab(); // roda na inicializacao
+    const resizeTab = () => setIsMobile(window.innerWidth < 600);
+    resizeTab();
     window.addEventListener('resize', resizeTab);
     return () => window.removeEventListener('resize', resizeTab);
-  }, []); // [] = vazio roda só uma vez, [valor] = roda toda vez que o valor muda
+  }, []);
+
+  // fecha menu se redimensionar pra desktop
+  useEffect(() => {
+    if (!isMobile) setMenuOpen(false);
+  }, [isMobile]);
 
   return (
-    <div>
-      <nav className='nav-container'>
-
-        {/* barra principal */}
-        <div  className='nav-flex-container'>
-          
-          <h1 className='logo'><Xablau/></h1>
-
-          <div className='search-container'>
-              <input placeholder="Busque na Xablau!" type="text" className="search-input" />
-            </div>
-
-          {/* itens do desktop, some abaixo de 600px */}
-          <div className='desktop-items'>
-            <Link to="/login" className='desktop-login'>
-              <UserCircle size={42} strokeWidth={1.5} />
-              <div>Entre<br/>ou Cadastre-se</div>
-            </Link>
-            <a href="#" className='desktop-fav-cart'>
-              <MdFavorite size={30} className='favorite-icon' />
-              <MdShoppingCart size={35} className='cart-icon' />
-            </a>
-          </div>
-
-          {/* botao hamburguer, aparece abaixo de 600px */}
-          <button className='hamburger-btn' onClick={() => setMenuOpen(!menuOpen)}>
-            {menuOpen ? <MdClose size={32} /> : <MdMenu size={32} />} {/* op ternaria, se é true, mdclose, se é false, mdmenu */}
-          </button>
-
-        </div>
-
-        {/* template string do js, ${} = expressao js avaliada na hora, ternaria para abertura do menu */}
-        <div className={`mobile-menu ${menuOpen ? 'mobile-menu--open' : ''}`}>
-          <Link to="/login" className='mobile-login' onClick={() => setMenuOpen(false)}>
-            <UserCircle size={36} strokeWidth={1.5} />
-            <div>Entre ou Cadastre-se</div>
+    <Box
+      w="100%"
+      bgGradient="to-b"
+      gradientFrom="#004d8e"
+      gradientTo="#3695e3"
+    >
+      {/* barra principal */}
+      <Flex
+        h="124px"
+        align="center"
+        justify="space-between"
+        px={6}
+      >
+        {/* logo */}
+        <Box as="h1" color="white" m={0}>
+          <Link to={'/'}>
+            <Xablau />
           </Link>
-          <a href="#" className='mobile-fav-cart'>
-            <MdFavorite size={30} className='favorite-icon' />
-            <MdShoppingCart size={35} className='cart-icon' />
-          </a>
-        </div>
+        </Box>
 
-      </nav>
-    </div>
-  )
+        {/* search */}
+        <Box flexGrow={1} mx={4} maxW="700px">
+          <Input
+            placeholder="Busque na Xablau!"
+            bg="aliceblue"
+            border="1.5px solid lightgrey"
+            borderRadius="12px"
+            h="30px"
+            px={3}
+            minW="150px"
+            w="100%"
+            _focus={{ border: '2px solid #4383b7' }}
+            _active={{ transform: 'scale(0.95)' }}
+            transition="all 0.3s cubic-bezier(0.19, 1, 0.22, 1)"
+          />
+        </Box>
+
+        {/* itens desktop */}
+        {!isMobile && (
+          <Flex align="center" gap={5}>
+            <Flex
+              as={Link}
+              to="/login"
+              align="center"
+              gap={2}
+              color="white"
+              textDecoration="none"
+            >
+              <UserCircle size={42} strokeWidth={1.5} />
+              <Box>Entre<br />ou Cadastre-se</Box>
+            </Flex>
+            <Flex gap={4}>
+              <MdFavorite size={30} color="white" />
+              <MdShoppingCart size={35} color="white" />
+            </Flex>
+          </Flex>
+        )}
+
+        {/* botão hamburguer */}
+        {isMobile && (
+          <IconButton
+            aria-label="Menu"
+            variant="ghost"
+            color="white"
+            _hover={{ bg: 'whiteAlpha.200' }}
+            onClick={() => setMenuOpen(!menuOpen)}
+          >
+            {menuOpen ? <MdClose size={32} /> : <MdMenu size={32} />}
+          </IconButton>
+        )}
+      </Flex>
+
+      {/* menu mobile */}
+      <Box
+        overflow="hidden"
+        maxH={menuOpen ? '200px' : '0'}
+        opacity={menuOpen ? 1 : 0}
+        transform={menuOpen ? 'translateY(0)' : 'translateY(-8px)'}
+        borderTop={menuOpen ? '1px solid #5bb1f6' : '1px solid transparent'}
+        px={menuOpen ? 6 : 6}
+        py={menuOpen ? 4 : 0}
+        transition="max-height 0.35s cubic-bezier(0.4,0,0.2,1), opacity 0.25s ease, transform 0.3s cubic-bezier(0.4,0,0.2,1), padding 0.3s ease"
+      >
+        <Flex justify="space-between">
+          <Flex
+            as={Link}
+            to="/login"
+            align="center"
+            gap={2}
+            color="white"
+            textDecoration="none"
+            onClick={() => setMenuOpen(false)}
+          >
+            <UserCircle size={36} strokeWidth={1.5} />
+            <Box>Entre ou Cadastre-se</Box>
+          </Flex>
+          <Flex gap={6}>
+            <MdFavorite size={30} color="white" />
+            <MdShoppingCart size={35} color="white" />
+          </Flex>
+        </Flex>
+      </Box>
+    </Box>
+  );
 }

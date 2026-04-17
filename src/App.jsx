@@ -12,27 +12,26 @@ import { AdminLayout } from './layouts/AdminLayout';
 
 function App() {
   return (
-    <BrowserRouter>
+      <BrowserRouter>
+        <Routes>
+          {/* USER */}
+          <Route element= { <UserLayout /> }>
+            <Route path='/' element= { <Home /> } />
+            <Route path='/product/:id' /* element= { <ProductDetails/>  }*/ />
+            <Route path='/login' element= { <Login /> } />
+            <Route path='/register' element= { <Register /> } />
+          </Route>
+        
+        {/*
+        ADMIN
+          <Route element= { <AdminLayout /> }> 
+            <Route index element= { <Dashboard /> } />
+            <Route path='products' element= { <Inventory /> } /> 
+          </Route> 
+        */}
+        </Routes> 
 
-      <Routes>
-        {/* USER */}
-        <Route element= { <UserLayout /> }>
-          <Route path='/' element= { <Home /> } />
-          <Route path='/product/:id' /* element= { <ProductDetails/>  }*/ />
-          <Route path='/login' element= { <Login /> } />
-          <Route path='/register' element= { <Register /> } />
-        </Route>
-      
-      {/*
-      ADMIN
-        <Route element= { <AdminLayout /> }> 
-          <Route index element= { <Dashboard /> } />
-          <Route path='products' element= { <Inventory /> } /> 
-        </Route> 
-      */}
-      </Routes> 
-
-    </BrowserRouter>
+      </BrowserRouter>
   )
 }
 

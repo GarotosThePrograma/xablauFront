@@ -5,6 +5,7 @@ import { Xablau } from '../components/common/Xablau.jsx';
 import { UserCircle } from 'lucide-react';
 import { MdShoppingCart, MdFavorite, MdMenu, MdClose } from 'react-icons/md';
 import { Box, Flex, Input, IconButton } from '@chakra-ui/react';
+import { FlexHoverOrange } from '@/components/ui/FlexHoverOrange.jsx';
 
 export function NavBar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -26,8 +27,9 @@ export function NavBar() {
     <Box
       w="100%"
       bgGradient="to-b"
-      gradientFrom="#004d8e"
-      gradientTo="#3695e3"
+      gradientFrom="#3695e3"
+      gradientTo="#004d8e"
+      borderBottom="2px solid #e27d35"
     >
       {/* barra principal */}
       <Flex
@@ -54,7 +56,7 @@ export function NavBar() {
             px={3}
             minW="150px"
             w="100%"
-            _focus={{ border: '2px solid #4383b7' }}
+            _focus={{ outline: '1px solid #FE6C04' }}
             _active={{ transform: 'scale(0.95)' }}
             transition="all 0.3s cubic-bezier(0.19, 1, 0.22, 1)"
           />
@@ -71,13 +73,22 @@ export function NavBar() {
               color="white"
               textDecoration="none"
             >
-              <UserCircle size={42} strokeWidth={1.5} />
-              <Box>Entre<br />ou Cadastre-se</Box>
+              <FlexHoverOrange>
+                  <UserCircle
+                    size={42}
+                    strokeWidth={1.5}
+                  />
+                  Entre<br />ou Cadastre-se
+              </FlexHoverOrange>
+
             </Flex>
-            <Flex gap={4}>
-              <MdFavorite size={30} color="white" />
-              <MdShoppingCart size={35} color="white" />
-            </Flex>
+            <FlexHoverOrange gap={4} color="white">
+              <MdFavorite size={30}  />
+            </FlexHoverOrange>
+
+            <FlexHoverOrange gap={4} color="white">
+              <MdShoppingCart size={35} />
+            </FlexHoverOrange>
           </Flex>
         )}
 

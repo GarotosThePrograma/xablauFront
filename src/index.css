@@ -4,14 +4,6 @@
   --breakpoint-md: 740px;
 }
 
-/*
-  The default border color has changed to `currentcolor` in Tailwind CSS v4,
-  so we've added these compatibility styles to make sure everything still
-  looks the same as it did with Tailwind CSS v3.
-
-  If we ever want to remove these styles, we need to add an explicit border
-  color utility to any element that depends on these defaults.
-*/
 @layer base {
   *,
   ::after,
@@ -28,8 +20,13 @@
 
 :root {
   --primary-color: 207 100% 28%; /* azul escuro */
-  --secondary-color: 207 75% 55%; /* azul mais claro */
+  --secondary-color: 25, 75%, 55%; /* laranja */
+  --tertiery-color: 207 75% 55%; /* azul mais claro */
   --background: 208 100% 97%; /* aliceblue para bg */ 
 
   --foreground: 207 100% 10%; /* azul quase preto para texto */
+}
+
+body {
+  background-color: aliceblue;
 }

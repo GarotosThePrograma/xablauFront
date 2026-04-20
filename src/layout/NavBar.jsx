@@ -87,7 +87,9 @@ export function NavBar() {
             </FlexHoverOrange>
 
             <FlexHoverOrange gap={4} color="white">
-              <MdShoppingCart size={35} />
+              <Link to='cart'>
+                <MdShoppingCart size={35} />
+              </Link>
             </FlexHoverOrange>
           </Flex>
         )}

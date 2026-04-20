@@ -1,5 +1,7 @@
 export function Cart() {
-    let cartProducts = [
-        
-    ]
+    return (
+        <>
+            <h1>Carrinho</h1>
+        </>
+    )
 }

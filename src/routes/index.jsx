@@ -6,6 +6,7 @@ import { AdminLayout } from '../layouts/AdminLayout'
 import { Home } from '@/pages/user/Home'
 import { Login } from '@/features/auth/Login'
 import { Register } from '@/features/auth/Register'
+import { Cart } from '../features/cart/Cart'
 
 
 export function AppRoutes() {
@@ -18,6 +19,7 @@ export function AppRoutes() {
                 <Route path='/product/:id' /* element= { <ProductDetails/>  }*/ />
                 <Route path='/login' element= { <Login /> } />
                 <Route path='/register' element= { <Register /> } />
+                <Route path='/cart' element= { <Cart /> } />
             </Route>
             
             {/*

@@ -16,6 +16,9 @@
 
 * {
     font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 :root {
@@ -29,4 +32,5 @@
 
 body {
   background-color: aliceblue;
+  padding-top: 124px;
 }

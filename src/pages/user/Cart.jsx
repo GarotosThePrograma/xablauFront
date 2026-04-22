@@ -1,6 +1,6 @@
 import { CartProductCard } from "../../components/common/CartProductCard"
 import { ProductCard } from "./Home"
-import { Flex, Text } from "@chakra-ui/react"
+import { Flex, Text, Button } from "@chakra-ui/react"
 import { useCartStore } from "../../store/useCartStore"
 
 export function Cart() {
@@ -34,12 +34,65 @@ export function Cart() {
 
             </Flex>
 
-            <Flex>
-                {/* resumo pedido */}
-                <Flex direction='column' alignItems='center' maxWidth='25%'>
-                    <h2>Resumo do Pedido</h2>
+            <Flex direction='column' alignItems='center' maxWidth='25%' h='85vh' p='20px'>
+                <Flex
+                    direction='column'
+                    bg='white'
+                    border='1px solid'
+                    borderColor='gray.200'
+                    borderRadius='14px'
+                    p='24px'
+                    w='100%'
+                    gap='12px'
+                    marginTop='124px'
+                >
+                    <Text fontSize='18px' fontWeight='bold' color='gray.900' mb='8px'>
+                    Resumo do Pedido
+                    </Text>
+
+                    {/* Subtotal */}
+                    <Flex justify='space-between'>
+                    <Text color='gray.500'>Subtotal</Text>
+                    <Text fontWeight='bold'>R$ 0,00</Text>
+                    </Flex>
+
+                    {/* Desconto */}
+                    <Flex justify='space-between'>
+                    <Text color='gray.500'>Desconto PIX</Text>
+                    <Text fontWeight='bold' color='green.500'>- R$ 0,00</Text>
+                    </Flex>
+
+                    {/* Frete */}
+                    <Flex justify='space-between'>
+                    <Text color='gray.500'>Frete</Text>
+                    <Text fontWeight='bold' color='green.500'>Grátis</Text>
+                    </Flex>
+
+                    {/* Divisor */}
+                    <Flex borderTop='1px solid' borderColor='gray.200' mt='4px' />
+
+                    {/* Total */}
+                    <Flex justify='space-between' align='center'>
+                    <Text fontSize='16px' fontWeight='bold' color='gray.900'>Total</Text>
+                    <Text fontSize='20px' fontWeight='bold' color='#e27d35'>R$ 0,00</Text>
+                    </Flex>
+
+                    {/* Botão */}
+                    <Button
+                    w='full'
+                    bg='linear-gradient(to top, #004d8e, #3695e3)'
+                    color='white'
+                    borderRadius='8px'
+                    fontSize='14px'
+                    fontWeight='600'
+                    mt='8px'
+                    _hover={{ bg: 'linear-gradient(to top, #00325a, #1f66a0)' }}
+                    _active={{ transform: 'scale(0.97)' }}
+                    >
+                    Finalizar Compra
+                    </Button>
                 </Flex>
-            </Flex>
+                </Flex>
         </Flex>
     )
 }

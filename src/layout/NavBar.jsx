@@ -30,10 +30,14 @@ export function NavBar() {
       gradientFrom="#3695e3"
       gradientTo={"#004d8e"}
       borderBottom="2px solid #e27d35"
+      h="124px"
+      position='fixed'
+      top='0'
+      left='0'
+      zIndex='9999'
     >
       {/* barra principal */}
       <Flex
-        h="124px"
         align="center"
         justify="space-between"
         px={6}

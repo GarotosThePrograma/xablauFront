@@ -6,7 +6,7 @@ import { useState } from 'react';
 import { useCartStore } from '../../store/useCartStore';
 import { products } from '../../features/products/Products';
 
-function ProductCard({ product }) {
+export function ProductCard({ product }) {
   const [added, setAdded] = useState(false);
 
   const addToCart = useCartStore((state) => state.addToCart);
@@ -46,7 +46,7 @@ function ProductCard({ product }) {
           {product.name}
         </Text>
         <Text fontSize='20px' fontWeight='700' color='gray.900' mb='14px'>
-          {product.price}
+          R$ {product.price}
         </Text>
         <Text fontSize='12px' fontWeight='700' color='gray.900' mb='14px'>
           Em estoque: <Span color='green' fontSize="15px">

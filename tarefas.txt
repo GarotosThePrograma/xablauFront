@@ -1,6 +1,6 @@
 front-end
 - aplicar breakpoints para economizar linhas
-- numerozinho de itens no carrinho
+- numerozinho de itens no carrinho (feito)
 - adicionar mais itens no "bd"
 - resumo do cart
 - detalhes do item

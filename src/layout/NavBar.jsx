@@ -69,76 +69,79 @@ export function NavBar() {
         </Box>
 
         {/* itens desktop */}
-        {!isMobile && (
-          <Flex align="center" gap={5}>
-            <Flex
-              as={Link}
-              to="/login"
-              align="center"
-              gap={2}
-              color="white"
-              textDecoration="none"
-            >
-              <FlexHoverOrange>
-                  <UserCircle
-                    size={42}
-                    strokeWidth={1.5}
-                  />
-                  Entre<br />ou Cadastre-se
-              </FlexHoverOrange>
-
-            </Flex>
-            <FlexHoverOrange gap={4} color="white">
-              <MdFavorite size={30}  />
+        <Flex
+          align="center"
+          gap={5}
+          display={{ base: 'none', md: 'flex'}}  
+        >
+          <Flex
+            as={Link}
+            to="/login"
+            align="center"
+            gap={2}
+            color="white"
+            textDecoration="none"
+          >
+            <FlexHoverOrange>
+                <UserCircle
+                  size={42}
+                  strokeWidth={1.5}
+                />
+                Entre<br />ou Cadastre-se
             </FlexHoverOrange>
+          </Flex>
 
-            <FlexHoverOrange gap={4} color="white">
-              <Link to='cart'>
-                <Box position="relative" display="inline-block">
-                  <MdShoppingCart size={35} />
-                  
-                  {/* Renderiza a bolinha apenas se houver itens no carrinho */}
-                  {cart.length > 0 && (
-                    <Flex
-                      position="absolute"
-                      top="-4px"
-                      right="-6px"
-                      bg="#FE6C04"
-                      color="white"
-                      borderRadius="full"
-                      w="20px"
-                      h="20px"
-                      align="center"
-                      justify="center"
-                      fontSize="11px"
-                      fontWeight="bold"
-                      border="2px solid #3695e3" 
-                    >
-                      {cart.length > 99 ? '99+' : cart.length} 
-                    </Flex>
-                  )}
+          <FlexHoverOrange gap={4} color="white">
+            <MdFavorite size={30}  />
+          </FlexHoverOrange>
+
+          <FlexHoverOrange gap={4} color="white">
+            <Link to='cart'>
+              <Box position="relative" display="inline-block">
+                <MdShoppingCart size={35} />
+                
+                {/* Renderiza a bolinha apenas se houver itens no carrinho */}
+                {cart.length > 0 && (
+                  <Flex
+                    position="absolute"
+                    top="-4px"
+                    right="-6px"
+                    bg="#FE6C04"
+                    color="white"
+                    borderRadius="full"
+                    w="20px"
+                    h="20px"
+                    align="center"
+                    justify="center"
+                    fontSize="11px"
+                    fontWeight="bold"
+                    border="2px solid #3695e3" 
+                  >
+                    {cart.length > 99 ? '99+' : cart.length} 
+                  </Flex>
+                )}
                 </Box>
               </Link>
             </FlexHoverOrange>
           </Flex>
-        )}
+
 
         {/* botão hamburguer */}
-        {isMobile && (
-          <IconButton
-            aria-label="Menu"
-            variant="ghost"
-            color="white"
-            _hover={{ bg: 'whiteAlpha.200' }}
-            onClick={() => setMenuOpen(!menuOpen)}
-          >
-            {menuOpen ? <MdClose size={32} /> : <MdMenu size={32} />}
-          </IconButton>
-        )}
+        <IconButton
+          display={{ base: 'flex', md: 'none' }}
+          aria-label="Menu"
+          variant="ghost"
+          color="white"
+          _hover={{ bg: 'whiteAlpha.200' }}
+          onClick={() => setMenuOpen(!menuOpen)}
+        >
+          {menuOpen ? <MdClose size={32} /> : <MdMenu size={32} />}
+        </IconButton>
       </Flex>
 
       {/* menu mobile */}
       <Box
+        display={{ base: 'block', md: 'none' }}
         overflow="hidden"
         maxH={menuOpen ? '200px' : '0'}
         opacity={menuOpen ? 1 : 0}
@@ -148,24 +151,6 @@ export function NavBar() {
         py={menuOpen ? 4 : 0}
         transition="max-height 0.35s cubic-bezier(0.4,0,0.2,1), opacity 0.25s ease, transform 0.3s cubic-bezier(0.4,0,0.2,1), padding 0.3s ease"
       >
-        <Flex justify="space-between">
-          <Flex
-            as={Link}
-            to="/login"
-            align="center"
-            gap={2}
-            color="white"
-            textDecoration="none"
-            onClick={() => setMenuOpen(false)}
-          >
-            <UserCircle size={36} strokeWidth={1.5} />
-            <Box>Entre ou Cadastre-se</Box>
-          </Flex>
-          <Flex gap={6}>
-            <MdFavorite size={30} color="white" />
-            <MdShoppingCart size={35} color="white" />
-          </Flex>
-        </Flex>
       </Box>
     </Box>
   );

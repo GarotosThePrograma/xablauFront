@@ -1,20 +1,16 @@
 import { CartProductCard } from "../../components/common/CartProductCard"
 import { ProductCard } from "../../pages/user/Home"
 import { Flex, Text } from "@chakra-ui/react"
+import { useCartStore } from "../../store/useCartStore"
 
 export function Cart() {
-    // produto apenas para moldar o cartproductcard
-    const product = {
-    id: 1,
-    name: 'Placa de Vídeo Challenger ASRock AMD Radeon RX 7600 8GB',
-    price: '1.996,65',
-    stock: 0,
-    img: 'https://images4.kabum.com.br/produtos/fotos/907814/placa-de-video-asrock-amd-radeon-rx-7600-challenger-pro-oc-8gb-gddr6-triple-fan-90-ga62zz-00uanf_1761582764_gg.jpg',
-  }
+    
+    const cart = useCartStore((state) => state.cart);
 
     return (
+        
         <Flex w='100%'>
-            <Flex direction='column' alignItems='center' maxWidth='65%'>
+            <Flex direction='column' alignItems='center' maxWidth='75%'>
                 {/* titulo */}
                 <Flex
                     // estilo provisorio
@@ -27,8 +23,15 @@ export function Cart() {
                 >Carrinho</Flex>
 
                 {/* itens no carrinho */}
-                <Flex>
-                    <CartProductCard product={product} />
+                <Flex direction='column'>
+                    { cart.length === 0 ? ''  :  (
+                        cart.map((product, id) => (
+                            <CartProductCard  
+                                key={id}
+                                product={product}
+                            />
+                        ))
+                    )}
                 </Flex>
 
             </Flex>

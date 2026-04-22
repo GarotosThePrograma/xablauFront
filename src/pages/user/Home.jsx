@@ -53,19 +53,28 @@ export function ProductCard({ product }) {
             { product.stock > 0 ? product.stock : <Span color='red' textDecoration='underline'>Esgotado</Span> }
             </Span>
         </Text>
-        <Button
-          w='full'
-          bg={added ? 'green.500' : 'linear-gradient(to top, #004d8e, #3695e3)'}
-          color='white'
-          borderRadius='8px'
-          fontSize='13px'
-          fontWeight='600'
-          _hover={{ bg: added ? 'green.400' : 'linear-gradient(to top, #00325a, #1f66a0)' }}
-          _active={{ transform: 'scale(0.97)' }}
-          onClick={handleAdd}
-        >
-          {added ? 'Adicionado!' : 'Adicionar ao carrinho'}
-        </Button>
+
+        { product.stock > 0 ? 
+        (
+          <Button
+            w='full'
+            bg={added ? 'green.500' : 'linear-gradient(to top, #004d8e, #3695e3)'}
+            color='white'
+            borderRadius='8px'
+            fontSize='13px'
+            fontWeight='600'
+            _hover={{ bg: added ? 'green.400' : 'linear-gradient(to top, #00325a, #1f66a0)' }}
+            _active={{ transform: 'scale(0.97)' }}
+            onClick={handleAdd}
+          >
+
+            {added ? 'Adicionado!' : 'Adicionar ao carrinho'}
+          </Button>  
+          )
+          : '' 
+        }
+        
+
       </Box>
     </Flex>
   );

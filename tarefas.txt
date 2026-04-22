@@ -1,0 +1,10 @@
+front-end
+- aplicar breakpoints para economizar linhas
+- numerozinho de itens no carrinho
+- adicionar mais itens no "bd"
+- resumo do cart
+- detalhes do item
+- finalizacao de compra talvez?!?!? nao sei
+
+back-end
+- estudar para estruturar 

@@ -4,9 +4,9 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { UserLayout } from '../layouts/UserLayout'
 import { AdminLayout } from '../layouts/AdminLayout'
 import { Home } from '@/pages/user/Home'
-import { Login } from '@/features/auth/Login'
-import { Register } from '@/features/auth/Register'
-import { Cart } from '../features/cart/Cart'
+import { Login } from '../pages/user/auth/Login.jsx'
+import { Register } from '../pages/user/auth/Register.jsx'
+import { Cart } from '../pages/user/Cart'
 
 
 export function AppRoutes() {

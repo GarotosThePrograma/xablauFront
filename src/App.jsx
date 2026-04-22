@@ -1,10 +1,6 @@
-import './App.css';
-
-
 import { Home } from './pages/user/Home.jsx';
-import { Login } from './features/auth/Login.jsx';
-import { Register } from './features/auth/Register.jsx';
-// Lembre-se de importar o ProductDetails, Dashboard e Inventory também! (perguntar oq é pra IA)
+import { Login } from './pages/user/auth/Login.jsx';
+import { Register } from './pages/user/auth/Register.jsx'
 import { AppRoutes } from './routes';
 
 function App() {

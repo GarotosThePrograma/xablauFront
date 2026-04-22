@@ -28,7 +28,7 @@ export function NavBar() {
       w="100%"
       bgGradient="to-b"
       gradientFrom="#3695e3"
-      gradientTo="#004d8e"
+      gradientTo={"#004d8e"}
       borderBottom="2px solid #e27d35"
     >
       {/* barra principal */}

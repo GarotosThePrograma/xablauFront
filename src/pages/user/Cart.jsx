@@ -1,5 +1,5 @@
 import { CartProductCard } from "../../components/common/CartProductCard"
-import { ProductCard } from "../../pages/user/Home"
+import { ProductCard } from "./Home"
 import { Flex, Text } from "@chakra-ui/react"
 import { useCartStore } from "../../store/useCartStore"
 
@@ -8,7 +8,7 @@ export function Cart() {
     const cart = useCartStore((state) => state.cart);
 
     return (
-        
+
         <Flex w='100%'>
             <Flex direction='column' alignItems='center' maxWidth='75%'>
                 {/* titulo */}
@@ -24,14 +24,12 @@ export function Cart() {
 
                 {/* itens no carrinho */}
                 <Flex direction='column'>
-                    { cart.length === 0 ? ''  :  (
-                        cart.map((product, id) => (
-                            <CartProductCard  
-                                key={id}
-                                product={product}
-                            />
-                        ))
-                    )}
+                    {cart.map((product, id) => (
+                        <CartProductCard  
+                            key={id}
+                            product={product}
+                        />
+                    ))}
                 </Flex>
 
             </Flex>

@@ -151,10 +151,12 @@ export function NavBar() {
               <MdFavorite size={30} />
             </FlexHoverOrange>
 
-            <Box onClick={() => setMenuOpen(false)} />
-            <FlexHoverOrange>
-              <CartIcon size={35} />
-            </FlexHoverOrange>
+            <Box onClick={() => setMenuOpen(false)}>
+              <FlexHoverOrange>
+                <CartIcon size={35} />
+              </FlexHoverOrange>
+            </Box>
+
           </Flex>
         </Flex>
       </Box>

@@ -122,6 +122,7 @@ export function NavBar() {
         opacity={menuOpen ? 1 : 0}
         transform={menuOpen ? 'translateY(0)' : 'translateY(-8px)'}
         borderTop={menuOpen ? '1px solid #004d8e' : '1px solid transparent'}
+        borderBottom={menuOpen ? '2px solid #e27d35' : ''}
         px={menuOpen ? 6 : 6}
         py={menuOpen ? 4 : 0}
         transition="max-height 0.35s cubic-bezier(0.4,0,0.2,1), opacity 0.25s ease, transform 0.3s cubic-bezier(0.4,0,0.2,1), padding 0.3s ease"

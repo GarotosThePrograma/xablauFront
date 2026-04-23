@@ -1,9 +1,8 @@
 front-end
-- aplicar breakpoints para economizar linhas
+- aplicar breakpoints para economizar linhas (feito só na nav bar kk, azar)
 - numerozinho de itens no carrinho (feito)
-- adicionar mais itens no "bd"
-- resumo do cart
-- detalhes do item
+- resumo do cart (feito)
+- detalhes do item 
 - finalizacao de compra talvez?!?!? nao sei
 
 back-end

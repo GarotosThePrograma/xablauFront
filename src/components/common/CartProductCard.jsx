@@ -30,7 +30,7 @@ export function CartProductCard({ product }) {
                 <Flex direction='column'>
                     <Heading fontSize='16px'>{ product.name }</Heading>
                     <Text fontSize='13px'>Com desconto no PIX: <Span fontWeight='bold'>R$ { product.price }</Span></Text>
-                    <Text fontSize='13px'>Parcelado no cartão: <Span fontWeight='bold' color='green'>3x sem juros R$ { (parseFloat( product.price.replace('.', '').replace(',', '.')) / 3).toFixed(2) }</Span></Text>
+                    <Text fontSize='13px'>Parcelado no cartão: <Span fontWeight='bold' color='green'>3x sem juros R$ { (parseFloat( product.price )) }</Span></Text>
                 </Flex>
 
                 <Flex

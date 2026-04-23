@@ -7,6 +7,16 @@ export function Cart() {
     
     const cart = useCartStore((state) => state.cart);
 
+    // reduce blindado
+    const totalAmount = cart.reduce((acc, product) => {
+        return acc + (product.price * product.quantity);
+    }, 0);
+
+    const formattedTotal = totalAmount.toLocaleString('pt-BR', {
+        style: 'currency',
+        currency: 'BRL'
+    });
+
     return (
 
         <Flex w='100%'>
@@ -53,13 +63,7 @@ export function Cart() {
                     {/* Subtotal */}
                     <Flex justify='space-between'>
                     <Text color='gray.500'>Subtotal</Text>
-                    <Text fontWeight='bold'>R$ 0,00</Text>
-                    </Flex>
-
-                    {/* Desconto */}
-                    <Flex justify='space-between'>
-                    <Text color='gray.500'>Desconto PIX</Text>
-                    <Text fontWeight='bold' color='green.500'>- R$ 0,00</Text>
+                    <Text fontWeight='bold'>{ formattedTotal }</Text>
                     </Flex>
 
                     {/* Frete */}
@@ -74,7 +78,7 @@ export function Cart() {
                     {/* Total */}
                     <Flex justify='space-between' align='center'>
                     <Text fontSize='16px' fontWeight='bold' color='gray.900'>Total</Text>
-                    <Text fontSize='20px' fontWeight='bold' color='#e27d35'>R$ 0,00</Text>
+                    <Text fontSize='20px' fontWeight='bold' color='#e27d35'>{ formattedTotal }</Text>
                     </Flex>
 
                     {/* Botão */}

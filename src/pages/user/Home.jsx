@@ -46,7 +46,12 @@ export function ProductCard({ product }) {
           {product.name}
         </Text>
         <Text fontSize='20px' fontWeight='700' color='gray.900' mb='14px'>
-          R$ {product.price}
+           {
+           product.price.toLocaleString('pt-BR', {
+            style: 'currency',
+            currency: 'BRL'
+            })
+            }
         </Text>
         <Text fontSize='12px' fontWeight='700' color='gray.900' mb='14px'>
           Em estoque: <Span color='green' fontSize="15px">

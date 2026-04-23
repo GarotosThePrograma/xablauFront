@@ -4,13 +4,13 @@ import { useCartStore } from '../../store/useCartStore';
 import { MdShoppingCart } from 'react-icons/md';
 
 
-export function CartIcon() {
+export function CartIcon({color, size = 35 }) {
     const cart = useCartStore((state) => state.cart);
 
     return (
         <Link to='cart'>
-            <Box position="relative" display="inline-block">
-                <MdShoppingCart size={35} />
+            <Box position="relative" display="inline-block" color={color}>
+                <MdShoppingCart size={size} />
                 
                 {/* Renderiza a bolinha apenas se houver itens no carrinho */}
                 {cart.length > 0 && (

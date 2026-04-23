@@ -4,6 +4,8 @@ export function FlexHoverOrange({ children , ...props}) {
     return (
         <Flex 
             direction="row"
+            justify='center'
+            align='center'
             size={42} 
             strokeWidth={1.5} 
             transition="all 0.3s ease-in-out"

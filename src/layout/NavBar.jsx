@@ -1,4 +1,3 @@
-// NavBar.jsx — sem NavBar.css
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Xablau } from '../components/common/Xablau.jsx';
@@ -127,7 +126,36 @@ export function NavBar() {
         py={menuOpen ? 4 : 0}
         transition="max-height 0.35s cubic-bezier(0.4,0,0.2,1), opacity 0.25s ease, transform 0.3s cubic-bezier(0.4,0,0.2,1), padding 0.3s ease"
       >
+        <Flex justify="space-between" align="center" w='100%'>
+          <Flex
+            as={Link}
+            to="/login"
+            justify="center"
+            align="center"
+            gap={2}
+            color="white"
+            textDecoration="none"
+            onClick={() => setMenuOpen(false)}
+          >
+            <FlexHoverOrange>
+              <Flex justify='center' align='center' gap='5px'>
+                <UserCircle size={36} strokeWidth={1.5} />
+                <Box fontSize='13px'>Entre ou<br />Cadastre-se</Box>
+              </Flex>
+            </FlexHoverOrange>
+          </Flex>
+          
+          <Flex gap={2} align='center' color='white'>
+            <FlexHoverOrange>
+              <MdFavorite size={30} />
+            </FlexHoverOrange>
 
+            <Box onClick={() => setMenuOpen(false)} />
+            <FlexHoverOrange>
+              <CartIcon size={35} />
+            </FlexHoverOrange>
+          </Flex>
+        </Flex>
       </Box>
     </Box>
   );

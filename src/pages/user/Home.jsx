@@ -1,23 +1,20 @@
 import '../../index.css'
 
-import { Box, Flex, Text, Image, Button, Icon, Span } from '@chakra-ui/react';
-import { BsCart3, BsCheckLg } from 'react-icons/bs';
-import { useState } from 'react';
+import { Box, Flex, Text, Image, Button, Span } from '@chakra-ui/react';
+import { useState, useEffect } from 'react';
 import { useCartStore } from '../../store/useCartStore';
-import { products } from '../../features/products/Products';
+import { getProducts } from '../../features/products/products';
 
 export function ProductCard({ product }) {
   const [added, setAdded] = useState(false);
 
   const addToCart = useCartStore((state) => state.addToCart);
 
-  const handleAdd = () => {
-    addToCart(product);
-    setAdded(true);
-    setTimeout(() => setAdded(false), 1000);
-  };
-
-  
+  const handleAdd = async () => {
+  await addToCart(product);
+  setAdded(true);
+  setTimeout(() => setAdded(false), 1000);
+};
 
   return (
     <Flex
@@ -86,6 +83,21 @@ export function ProductCard({ product }) {
 }
 
 export function Home() {
+  const [products, setProducts] = useState([])
+
+  useEffect(() => {
+    async function loadProducts () {
+      try {
+        const data = await getProducts()
+        setProducts(data)
+      } catch (e) {
+        console.error(e)
+      }
+    }
+
+    loadProducts()
+  }, [])
+
   return (
     <Box p='40px 24px'>
       <Text fontSize='22px' fontWeight='700' color='gray.900' mb='28px'>
@@ -93,7 +105,7 @@ export function Home() {
       </Text>
       <Flex gap='16px' wrap='wrap'>
         {/* basicamente um "for" dos produtos */}
-        {products.map((p) => <ProductCard key={p.id} product={p} />)}
+        {products.map((product) => ( <ProductCard key={product.id} product={product} /> )) }
       </Flex>
     </Box>
   );

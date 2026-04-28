@@ -1,45 +1,150 @@
 import { create } from 'zustand';
 
-export const useCartStore = create((set) => ({
-    cart: [],
-    addToCart: (product) => set((state) => {
-        const itemExists = state.cart.find((item) => item.id === product.id);
+const API_URL = 'http://localhost:5002/api';
 
-        if (itemExists) {
-            return {
-                cart: state.cart.map((item) => 
-                    item.id === product.id && item.quantity < item.stock
-                        ? { ...item, quantity: item.quantity + 1 }
-                        : item
-                    ),
-            }
-        } else {
-            return { cart: [...state.cart, { ...product, quantity: 1 }] }
-        }
-    }),
+function getUsuarioId() {
+  return localStorage.getItem('usuarioId');
+}
 
-    decreaseQuantity: (productId) => set((state) => {
-        const itemExists = state.cart.find((item) => item.id === productId);
+function normalizeCart(carrinho) {
+  if (!carrinho || !carrinho.itens) {
+    return [];
+  }
 
-        if (itemExists?.quantity === 1) {
-            return { cart: state.cart.filter((item) => item.id !== productId) };
-        } else {
-            return {
-                cart: state.cart.map((item) =>
-                    item.id === productId
-                        ? { ...item, quantity: item.quantity - 1 }
-                        : item  
-                )
-            }
-        }
-    }),
+  return carrinho.itens.map((item) => ({
+    id: item.produtoId,
+    name: item.nome,
+    img: item.imagemUrl,
+    price: item.preco,
+    quantity: item.quantidade,
+    subtotal: item.subtotal,
+  }));
+}
 
-    removeFromCart: (productId) => set((state) => ({
-        cart: state.cart.filter((item) => item.id !== productId)
-    }))
+export const useCartStore = create((set, get) => ({
+  cart: [],
+
+  loadCart: async () => {
+    const usuarioId = getUsuarioId();
+
+    if (!usuarioId) {
+      set({ cart: [] });
+      return;
+    }
+
+    const response = await fetch(`${API_URL}/carrinho/${usuarioId}`);
+    const data = await response.json();
+
+    if (!response.ok) {
+      set({ cart: [] });
+      return;
+    }
+
+    set({ cart: normalizeCart(data) });
+  },
+
+  addToCart: async (product) => {
+    const usuarioId = getUsuarioId();
+
+    if (!usuarioId) {
+      throw new Error('Usuário não está logado');
+    }
+
+    const response = await fetch(`${API_URL}/carrinho/${usuarioId}/itens`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        produtoId: product.id,
+        quantidade: 1,
+      }),
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error('Erro ao adicionar item no carrinho');
+    }
+
+    set({ cart: normalizeCart(data) });
+  },
+
+  decreaseQuantity: async (productId) => {
+    const usuarioId = getUsuarioId();
+    const item = get().cart.find((cartItem) => cartItem.id === productId);
+
+    if (!usuarioId || !item) {
+      return;
+    }
+
+    if (item.quantity === 1) {
+      const response = await fetch(`${API_URL}/carrinho/${usuarioId}/itens/${productId}`, {
+        method: 'DELETE',
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error('Erro ao remover item do carrinho');
+      }
+
+      set({ cart: normalizeCart(data) });
+      return;
+    }
+
+    const response = await fetch(`${API_URL}/carrinho/${usuarioId}/itens/${productId}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        quantidade: item.quantity - 1,
+      }),
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error('Erro ao atualizar quantidade');
+    }
+
+    set({ cart: normalizeCart(data) });
+  },
+
+  removeFromCart: async (productId) => {
+    const usuarioId = getUsuarioId();
+
+    if (!usuarioId) {
+      return;
+    }
+
+    const response = await fetch(`${API_URL}/carrinho/${usuarioId}/itens/${productId}`, {
+      method: 'DELETE',
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error('Erro ao remover item do carrinho');
+    }
+
+    set({ cart: normalizeCart(data) });
+  },
+
+  clearCart: async () => {
+    const usuarioId = getUsuarioId();
+
+    if (!usuarioId) {
+      return;
+    }
+
+    const response = await fetch(`${API_URL}/carrinho/${usuarioId}/itens`, {
+      method: 'DELETE',
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error('Erro ao limpar carrinho');
+    }
+
+    set({ cart: normalizeCart(data) });
+  },
 }));
-
-// quando muda aparece no console
-useCartStore.subscribe((state) => {
-    console.log('A store mudou:', state.cart);
-});

@@ -19,9 +19,31 @@ export function Login() {
     resolver: zodResolver(loginSchema), // o RHF agora sabe que deve usar o Zod
   });
 
-  const enviarDados = (dadosValidados) => {
-    console.log("Sucesso!", dadosValidados);
+  const enviarDados = async (dadosValidados) => {
+    const response = await fetch('http://localhost:5002/api/auth/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email: dadosValidados.email,
+        senha: dadosValidados.password,
+      }),
+    });
+
+    const data = await response.json();
+
+    if (data.sucesso) {
+      localStorage.setItem('usuarioId', data.usuarioId);
+      localStorage.setItem('nome', data.nome);
+
+      console.log('Login realizado com sucesso', data);
+      return;
+    }
+
+    console.log('Erro no login', data);
   };
+
 
   return (
     <div className="login-wrapper">

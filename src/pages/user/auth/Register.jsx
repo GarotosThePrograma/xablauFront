@@ -18,9 +18,29 @@ export function Register() {
     resolver: zodResolver(registerSchema), // o RHF agora sabe que deve usar o Zod
   });
 
-  const enviarDados = (dadosValidados) => {
-    console.log("Sucesso!", dadosValidados);
+  const enviarDados = async (dadosValidados) => {
+    const response = await fetch('http://localhost:5002/api/auth/register', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        nome: dadosValidados.name,
+        email: dadosValidados.email,
+        senha: dadosValidados.password,
+      }),
+    });
+
+    const data = await response.json();
+
+    if (data.sucesso) {
+      console.log('Cadastro realizado com sucesso', data);
+      return;
+    }
+
+    console.log('Erro no cadastro', data);
   };
+
 
   return (
     <div className="login-wrapper">

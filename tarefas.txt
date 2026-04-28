@@ -7,3 +7,4 @@ front-end
 
 back-end
 - estudar para estruturar 
+- CRUD de tipagem generica
